@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Core\RigidBody.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Simulator.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Renderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{90ac2cd0-0cb3-49eb-aa04-07e5cc525772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\maths">
+      <UniqueIdentifier>{ff92ade9-ee5d-4166-a571-59a1e5829bc7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Core\RigidBody.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Simulator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Color.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\maths\Quaternion.h">
+      <Filter>Core\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\maths\MathsUtils.h">
+      <Filter>Core\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\maths\Vector.h">
+      <Filter>Core\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\maths\Matrix.h">
+      <Filter>Core\maths</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Entity.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Renderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\WindowInfo.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
