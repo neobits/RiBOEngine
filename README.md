@@ -8,7 +8,7 @@ Lot of work to be done in order to configure a clear interface: no GUI implement
 
 ## Dependencies
 
-- Visual Studio 2017
+- Visual Studio 2017, running only with x86 architecture and Debug
 - [freeglut](http://freeglut.sourceforge.net/) is a free-software/open-source alternative to the OpenGL Utility Toolkit (GLUT) library
 - [GLEW](http://glew.sourceforge.net/) the OpenGL Extension Wrangler Library
 
