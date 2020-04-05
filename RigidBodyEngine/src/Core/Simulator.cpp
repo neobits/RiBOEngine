@@ -1,10 +1,19 @@
+//
+//  Simulator.cpp
+//  RiBo Engine
+//
+//  Created by Angelo Moro on 10/12/2019
+//
+
 #include "Simulator.h"
 #include "RigidBody.h"
 #include "maths\MathsUtils.h"
 
 using namespace Core;
 
-tkSimulator::tkSimulator(void) :NBODIES(2)
+//----------------------------------------------------------------------
+tkSimulator::tkSimulator(void)
+	:NBODIES(2)
 {
 	y_0 = new float[STATE_SIZE * NBODIES];
 	yfinal = new float[STATE_SIZE * NBODIES];
@@ -14,15 +23,15 @@ tkSimulator::tkSimulator(void) :NBODIES(2)
 	// By default, t=0, h=0.01, ct=10
 	time = 0.0f;
 	step = 0.01f;
-	ct = (int)(step * 1000);
-	dt = 1 / (float)ct;
+	fixedTime = (int)(step * 1000);
+	dt = 1 / (float)fixedTime;
 	it = 0;
 }
-
+//----------------------------------------------------------------------
 tkSimulator::~tkSimulator(void)
 {
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::Init()
 {
 	// Box 1
@@ -40,8 +49,40 @@ void tkSimulator::Init()
 
 	BodiesToArray(yfinal);
 }
+//----------------------------------------------------------------------
+void tkSimulator::Render()
+{
+	for (int i = 0; i < NBODIES; i++)
+	{
+		float magOmega = rBodies[i].omega.Magnitude();
+		tkVec3 rotation = tkQuat::EulerAngles(rBodies[i].q);
+		glColor3f(Color::Green().R, Color::Green().G, Color::Green().B);
 
-/* Copy the state information into an array */
+		glLoadIdentity();
+		glTranslatef(rBodies[i].position.x,
+			rBodies[i].position.y,
+			rBodies[i].position.z);
+		glRotatef(magOmega, rotation.x, rotation.y, rotation.z);
+		glScalef(rBodies[i].a, rBodies[i].b, rBodies[i].c);
+		glutSolidCube(1);
+	}
+}
+//----------------------------------------------------------------------
+void tkSimulator::Update()
+{
+	SimulationLoop();
+}
+//----------------------------------------------------------------------
+void tkSimulator::KeyPressed(unsigned char key, int x, int y)
+{
+	// ASCII code Escape = 27
+	if (key == '27')
+	{
+
+	}
+}
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
 void tkSimulator::StateToArray(RigidBody *rb, float *y)
 {
 	*y++ = rb->position.x;
@@ -61,8 +102,7 @@ void tkSimulator::StateToArray(RigidBody *rb, float *y)
 	*y++ = rb->L.y;
 	*y++ = rb->L.z;
 }
-
-/* Copy information from an array into the state variables */
+//----------------------------------------------------------------------
 void tkSimulator::ArrayToState(RigidBody *rb, float *y)
 {
 	rb->position.x = *y++;
@@ -96,7 +136,7 @@ void tkSimulator::ArrayToState(RigidBody *rb, float *y)
 	// ?(t) = I^(-1)(t).L(t)
 	rb->omega = rb->Iinv*rb->L;
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::ArrayToBodies(float y[])
 {
 	for (int i = 0; i < NBODIES; i++)
@@ -106,14 +146,14 @@ void tkSimulator::ArrayToBodies(float y[])
 		}
 	}
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::BodiesToArray(float y[])
 {
 	for (int i = 0; i < NBODIES; i++) {
 		StateToArray(&rBodies[i], &y[i * STATE_SIZE]);
 	}
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::ComputeForces(RigidBody *rb)
 {
 	// Total force and torque applied to the rigid body
@@ -133,7 +173,7 @@ void tkSimulator::ComputeForces(RigidBody *rb)
 	rb->SetForce(Ftot);
 	rb->SetTorque(Ttot);
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::dydt(float y[], float ydot[])
 {
 	// Put data in y[] into Bodies[]
@@ -144,7 +184,7 @@ void tkSimulator::dydt(float y[], float ydot[])
 		ddt_StateToArray(&rBodies[i], &ydot[i * STATE_SIZE]);
 	}
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::ddt_StateToArray(RigidBody *rb, float *ydot)
 {
 	// copy	d/dt x(t) = v(t) into ydot
@@ -167,7 +207,7 @@ void tkSimulator::ddt_StateToArray(RigidBody *rb, float *ydot)
 	*ydot++ = rb->torque.y;
 	*ydot++ = rb->torque.z;
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::DerivativeCalculation()
 {
 	int i_state;
@@ -193,7 +233,7 @@ void tkSimulator::DerivativeCalculation()
 		yfinal[i_state] = y[i_state];
 	}
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::SystemEvolution()
 {
 	ArrayToBodies(yfinal);
@@ -201,7 +241,7 @@ void tkSimulator::SystemEvolution()
 	time += step;
 	it++;
 }
-
+//----------------------------------------------------------------------
 void tkSimulator::SimulationLoop()
 {
 	for (int i = 0; i < STATE_SIZE * NBODIES; i++) 
@@ -211,4 +251,4 @@ void tkSimulator::SimulationLoop()
 	DerivativeCalculation();
 	SystemEvolution();
 }
-
+//----------------------------------------------------------------------

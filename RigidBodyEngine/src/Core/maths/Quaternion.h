@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __MATH_QUATERNION_H__
 #define __MATH_QUATERNION_H__
 

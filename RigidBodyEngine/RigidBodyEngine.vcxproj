@@ -120,14 +120,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\Renderer.cpp" />
+    <ClCompile Include="src\Core\GlutMachine.cpp" />
     <ClCompile Include="src\Core\RigidBody.cpp" />
     <ClCompile Include="src\Core\Simulator.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Color.h" />
-    <ClInclude Include="src\Core\Renderer.h" />
+    <ClInclude Include="src\Core\GlutMachine.h" />
+    <ClInclude Include="src\Core\IListener.h" />
     <ClInclude Include="src\Core\maths\MathsUtils.h" />
     <ClInclude Include="src\Core\maths\Matrix.h" />
     <ClInclude Include="src\Core\maths\Quaternion.h" />

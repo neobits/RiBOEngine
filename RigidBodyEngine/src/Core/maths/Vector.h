@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __MATH_VECTOR_H__
 #define __MATH_VECTOR_H__
 

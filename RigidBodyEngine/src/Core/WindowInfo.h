@@ -1,3 +1,11 @@
+//
+//  WindowInfo.h
+//  RiBo Engine
+//
+//  Created by Angelo Moro on 10/12/2019
+//
+
+#pragma once
 
 #ifndef __CORE_WINDOW_INFO_H__
 #define __CORE_WINDOW_INFO_H__

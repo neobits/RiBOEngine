@@ -8,7 +8,7 @@
     <ClCompile Include="src\Core\Simulator.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Renderer.cpp">
+    <ClCompile Include="src\Core\GlutMachine.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,10 +45,13 @@
     <ClInclude Include="src\Core\Entity.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\Renderer.h">
+    <ClInclude Include="src\Core\WindowInfo.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\WindowInfo.h">
+    <ClInclude Include="src\Core\IListener.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\GlutMachine.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __MATH_MATRIX_H__
 #define __MATH_MATRIX_H__
 
