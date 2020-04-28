@@ -7,12 +7,12 @@
 
 #pragma once
 
-#ifndef __SIMULATOR_QUATERNION_H__
-#define __SIMULATOR_QUATERNION_H__
+#ifndef __SIMULATOR_H__
+#define __SIMULATOR_H__
 
 #include <vector>
 #include "IListener.h"
-#include "../../lib/freeglut/freeglut.h"
+#include "freeglut.h"
 #include "Color.h"
 
 #define STATE_SIZE 13
@@ -32,6 +32,10 @@ namespace Core
 		~tkSimulator(void);
 
 		void Init();
+		void Render();
+		void Update();
+		void KeyPressed(unsigned char key, int x, int y);
+
 		/* Copy the state information into an array */
 		void StateToArray(RigidBody *rb, float *y);
 		/* Copy information from an array into the state variables */
@@ -61,12 +65,7 @@ namespace Core
 
 		float *y_0;
 		float *yfinal;
-
-	public:
-		void Render();
-		void Update();
-		void KeyPressed(unsigned char key, int x, int y);
 	};
 }
 
-#endif /*!__SIMULATOR_QUATERNION_H__*/
+#endif /*!__SIMULATOR_H__*/

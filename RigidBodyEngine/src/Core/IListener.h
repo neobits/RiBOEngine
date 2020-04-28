@@ -19,6 +19,7 @@ namespace Core
 		virtual ~IListener() = 0;
 
 		// Pure abstract virtual functions (notifiers), i.e. method() = 0
+		inline virtual void Init() = 0;
 		inline virtual void Update() = 0;
 		inline virtual void Render() = 0;
 		inline virtual void KeyPressed(unsigned char key, int x, int y) = 0;

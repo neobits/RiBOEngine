@@ -1,3 +1,10 @@
+//
+//  Vector.h
+//  RiBo Engine
+//
+//  Created by Angelo Moro on 10/12/2019
+//
+
 #pragma once
 
 #ifndef __MATH_VECTOR_H__
@@ -11,6 +18,53 @@ class tkVec2
 {
 public:
 	float x, y;
+
+	tkVec2(void) { this->x = this->y = 0.f; }
+	tkVec2(float v) { this->x = v;  this->y = v; }
+	tkVec2(float x, float y) { this->x = x;  this->y = y; }
+
+	inline tkVec2& operator+(const tkVec2 &rhs)
+	{
+		float x = this->x + rhs.x;
+		float y = this->y + rhs.y;
+		return *(new tkVec2(x, y));
+	}
+
+	inline tkVec2& operator+=(const tkVec2 &rhs)
+	{
+		this->x += rhs.x;
+		this->y += rhs.y;
+		return *this;
+	}
+
+	inline tkVec2& operator-(const tkVec2 &rhs)
+	{
+		float x = this->x - rhs.x;
+		float y = this->y - rhs.y;
+		return *(new tkVec2(x, y));
+	}
+
+	inline tkVec2& operator-=(const tkVec2 &rhs)
+	{
+		this->x -= rhs.x;
+		this->y -= rhs.y;
+		return *this;
+	}
+
+	inline bool operator==(const tkVec2 &rhs) const
+	{
+		return(this->x == rhs.x && this->y == rhs.y);
+	}
+
+	inline bool operator!=(const tkVec2 &rhs) const
+	{
+		return(this->x != rhs.x || this->y != rhs.y);
+	}
+
+	/* Vector2(0, 0) */
+	static tkVec2 ZeroVector() { return tkVec2(0); }
+	/* Vector2(1, 1) */
+	static tkVec2 UnityVector() { return tkVec2(1); }
 };
 
 /* 3-dimensional vector (x,y,z) */
@@ -75,9 +129,9 @@ public:
 
 	inline tkVec3& operator*(const float k)
 	{
-		float x = k*this->x;
-		float y = k*this->y;
-		float z = k*this->z;
+		float x = k * this->x;
+		float y = k * this->y;
+		float z = k * this->z;
 		return *(new tkVec3(x, y, z));
 	}
 
@@ -104,13 +158,13 @@ public:
 
 	inline bool operator!=(const tkVec3 &rhs) const
 	{
-		return(this->z != rhs.z || this->y != rhs.y || this->z != rhs.z);
+		return(this->x != rhs.x || this->y != rhs.y || this->z != rhs.z);
 	}
 
 	/* Length of this vector. */
 	float Magnitude(void)
 	{
-		return (sqrt(x*x + y*y + z*z));
+		return (sqrt(x*x + y * y + z * z));
 	}
 
 	void Normalize(void)
@@ -125,6 +179,11 @@ public:
 		if (fabs(x) < epsilon) x = 0.0f;
 		if (fabs(y) < epsilon) y = 0.0f;
 		if (fabs(z) < epsilon) z = 0.0f;
+	}
+
+	void Invert(void)
+	{
+		x = -x; y = -y; z = -z;
 	}
 
 	// Static functions

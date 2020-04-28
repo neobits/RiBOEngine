@@ -1,3 +1,10 @@
+//
+//  Quaternion.h
+//  RiBo Engine
+//
+//  Created by Angelo Moro on 10/12/2019
+//
+
 #pragma once
 
 #ifndef __MATH_QUATERNION_H__

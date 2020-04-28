@@ -1,3 +1,10 @@
+//
+//  MathUtils.h
+//  RiBo Engine
+//
+//  Created by Angelo Moro on 10/12/2019
+//
+
 #pragma once
 
 #include <math.h>

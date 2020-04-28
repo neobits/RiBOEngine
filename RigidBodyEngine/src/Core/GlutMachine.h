@@ -10,7 +10,7 @@
 
 #include <string.h>
 #include <iostream>
-#include "../../lib/freeglut/freeglut.h"
+#include "freeglut.h"
 #include "WindowInfo.h"
 #include "IListener.h"
 
